@@ -1,2 +1,2 @@
 # Kumar-Knight
-zelda like clone game made using pygame
+Game similar to zelda made using pygame
