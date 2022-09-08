@@ -1,8 +1,8 @@
-import imp
 import pygame
 from settings import *
 from tile import Tile
 from player import Player
+from debug import debug
 
 class Level:
     def __init__(self) -> None:
@@ -23,8 +23,9 @@ class Level:
                 if col == 'x':
                     Tile((x,y), [self.visable_sprite, self.obstacle_sprite])
                 if col == 'p':
-                    Player((x,y), [self.visable_sprite])
+                    self.player = Player((x,y), [self.visable_sprite])
 
     def run(self):
         self.visable_sprite.draw(self.display_surface)
         self.visable_sprite.update()
+        debug(self.player.direction)
