@@ -16,6 +16,7 @@ class Level:
         self.create_map()
 
     def create_map(self):
+        """
         for i, row in enumerate(MAP):
             for j, col in enumerate(row):
                 x = j*TILESIZE
@@ -24,6 +25,8 @@ class Level:
                     Tile((x,y), [self.visable_sprite, self.obstacle_sprite])
                 if col == 'p':
                     self.player = Player((x,y), [self.visable_sprite], self.obstacle_sprite)
+        """
+        self.player = Player((2000, 1430), [self.visable_sprite], self.obstacle_sprite)
 
     def run(self):
         self.visable_sprite.custom_draw(self.player)
