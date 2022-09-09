@@ -4,7 +4,7 @@ from settings import *
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, groups, obstacle_sprites) -> None:
         super().__init__(groups)
-        self.image = pygame.image.load('graphics/player.png').convert_alpha()
+        self.image = pygame.image.load('oldGraphics/player.png').convert_alpha()
         self.rect = self.image.get_rect(topleft = pos)
         self.hitbox = self.rect.inflate(0, -26)
 
@@ -47,7 +47,7 @@ class Player(pygame.sprite.Sprite):
                     if self.direction.x > 0:
                         self.hitbox.right = sprite.hitbox.left
                     if self.direction.x < 0:
-                        self.hitbox.left = sprite.hitbox.right
+                        self.hitbox.left = sprite.hitbox.right 
 
         if direction == 'vertical':
             for sprite in self.obstacle_sprites:
