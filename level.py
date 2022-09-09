@@ -3,6 +3,7 @@ from settings import *
 from tile import Tile
 from player import Player
 from debug import debug
+from support import *
 
 class Level:
     def __init__(self) -> None:
@@ -16,16 +17,25 @@ class Level:
         self.create_map()
 
     def create_map(self):
-        """
-        for i, row in enumerate(MAP):
-            for j, col in enumerate(row):
-                x = j*TILESIZE
-                y = i*TILESIZE
-                if col == 'x':
-                    Tile((x,y), [self.visable_sprite, self.obstacle_sprite])
-                if col == 'p':
-                    self.player = Player((x,y), [self.visable_sprite], self.obstacle_sprite)
-        """
+        layouts = {
+            'boundary': import_csv_layout('map/map_FloorBlocks.csv')
+        }
+        
+        for style, layout in layouts.items():
+            for i, row in enumerate(layout):
+                for j, col in enumerate(row):
+                    if col != '-1':
+                        x = j*TILESIZE
+                        y = i*TILESIZE
+                        if style == 'boundary':
+                            Tile((x,y), [self.obstacle_sprite], 'invisible')
+                    """
+                    if col == 'x':
+                        Tile((x,y), [self.visable_sprite, self.obstacle_sprite])
+                    if col == 'p':
+                        self.player = Player((x,y), [self.visable_sprite], self.obstacle_sprite)
+                    """
+        
         self.player = Player((2000, 1430), [self.visable_sprite], self.obstacle_sprite)
 
     def run(self):
