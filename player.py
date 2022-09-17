@@ -2,7 +2,7 @@ import pygame
 from settings import *
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, obstacle_sprites) -> None:
+    def __init__(self, pos, groups, obstacle_sprites, create_attack) -> None:
         super().__init__(groups)
         self.image = pygame.image.load('graphics/batman.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (64, 64))
@@ -15,6 +15,7 @@ class Player(pygame.sprite.Sprite):
         self.attacking = False
         self.attackCooldown = 400
         self.attackTimer = None
+        self.create_attack = create_attack
 
         self.obstacle_sprites = obstacle_sprites
 
@@ -38,7 +39,7 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_SPACE] and not self.attacking:
             self.attacking = True
             self.attackTimer = pygame.time.get_ticks()
-            print('attack')
+            self.create_attack()
         
         if keys[pygame.K_LCTRL] and not self.attacking:
             self.attacking = True
