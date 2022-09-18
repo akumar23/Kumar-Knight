@@ -40,26 +40,34 @@ class Player(pygame.sprite.Sprite):
 
         if keys[pygame.K_UP] or keys[pygame.K_w]:
             self.direction.y = -1
+            self.status = "up"
         elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.direction.y = 1
+            self.status = "down"
         else:
             self.direction.y = 0
+            self.status = "down_idle"
 
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.direction.x = 1
+            self.status = "right"
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.direction.x = -1
+            self.status = "left"
         else:
             self.direction.x = 0
+            self.status = "right_idle"
 
         if keys[pygame.K_SPACE] and not self.attacking:
             self.attacking = True
             self.attackTimer = pygame.time.get_ticks()
+            self.status = "right_attack"
             self.create_attack()
         
         if keys[pygame.K_LCTRL] and not self.attacking:
             self.attacking = True
             self.attackTimer = pygame.time.get_ticks()
+            self.status = "right_attack"
             print('magic')
     
     def move(self, speed):
