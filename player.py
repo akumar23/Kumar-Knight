@@ -45,12 +45,16 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_UP] or keys[pygame.K_w]:
             self.direction.y = -1
             self.status = "up"
+            self.image = pygame.image.load('graphics/player/up_idle/idle_up.png').convert_alpha()            
         elif keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.direction.y = 1
             self.status = "down"
+            self.image = pygame.image.load('graphics/player/down_idle/idle_down.png').convert_alpha()           
         else:
             self.direction.y = 0
             self.status = "down_idle"
+            self.image = pygame.image.load('graphics/batman.png').convert_alpha()
+            self.image = pygame.transform.scale(self.image, (64, 64))             
 
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.direction.x = 1
@@ -58,6 +62,7 @@ class Player(pygame.sprite.Sprite):
             self.image = pygame.image.load('graphics/player/right_idle/idle_right.png').convert_alpha()
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.direction.x = -1
+            self.image = pygame.image.load('graphics/player/left_idle/idle_left.png').convert_alpha()            
             self.status = "left"
         else:
             self.direction.x = 0
