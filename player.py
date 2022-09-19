@@ -55,12 +55,15 @@ class Player(pygame.sprite.Sprite):
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.direction.x = 1
             self.status = "right"
+            self.image = pygame.image.load('graphics/player/right_idle/idle_right.png').convert_alpha()
         elif keys[pygame.K_LEFT] or keys[pygame.K_a]:
             self.direction.x = -1
             self.status = "left"
         else:
             self.direction.x = 0
             self.status = "right_idle"
+            self.image = pygame.image.load('graphics/batman.png').convert_alpha()
+            self.image = pygame.transform.scale(self.image, (64, 64))           
 
         if keys[pygame.K_SPACE] and not self.attacking:
             self.attacking = True
