@@ -26,7 +26,6 @@ class Player(pygame.sprite.Sprite):
         self.create_attack = create_attack
         self.weapon_index = 0
         self.weapon = list(weapon_data.keys())[self.weapon_index]
-        print(self.weapon)
 
 
     def import_player_assests(self):
