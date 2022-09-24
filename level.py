@@ -17,6 +17,9 @@ class Level:
         #set up sprites for obstacles
         self.visable_sprite = YSortCameraGroup()
         self.obstacle_sprite = pygame.sprite.Group()
+
+        self.current_attack = None
+
         self.create_map()
 
     def create_map(self):
@@ -49,7 +52,15 @@ class Level:
                                 surf = graphics['objects'][int(col)]
                                 Tile((x,y), [self.visable_sprite, self.obstacle_sprite], 'object', surf)
         
-        self.player = Player((2000, 1430), [self.visable_sprite], self.obstacle_sprite, self.create_attack)
+        self.player = Player((2000, 1430), [self.visable_sprite], self.obstacle_sprite, self.create_attack, self.destroy_weapon)
+
+    def create_attack(self):
+        self.current_attack = Weapon(self.player[self.visable_sprite])
+    
+    def destroy_weapon(self):
+        if self.current_attack:
+            self.current_attack.kill()
+        self.create_attack = None
 
     def create_attack(self):
         Weapon(self.player, [self.visable_sprite])

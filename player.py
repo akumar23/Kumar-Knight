@@ -3,7 +3,7 @@ from settings import *
 from support import import_folder
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, pos, groups, obstacle_sprites, create_attack) -> None:
+    def __init__(self, pos, groups, obstacle_sprites, create_attack, destroy_weapon) -> None:
         super().__init__(groups)
         self.image = pygame.image.load('graphics/batman.png').convert_alpha()
         self.image = pygame.transform.scale(self.image, (64, 64))
@@ -24,6 +24,7 @@ class Player(pygame.sprite.Sprite):
         self.obstacle_sprites = obstacle_sprites
 
         self.create_attack = create_attack
+        self.destroy_weapon = destroy_weapon
         self.weapon_index = 0
         self.weapon = list(weapon_data.keys())[self.weapon_index]
 
@@ -113,6 +114,7 @@ class Player(pygame.sprite.Sprite):
         if self.attacking:
             if time - self.attackTimer >= self.attackCooldown:
                 self.attacking = False
+                self.destroy_weapon()
 
     def update(self):
         self.input()
